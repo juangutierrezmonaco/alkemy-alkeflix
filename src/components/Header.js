@@ -1,7 +1,11 @@
 import { Link } from "react-router-dom";
+import { useFavs } from "../context/FavsContext";
 import Buscador from './Buscador'
 
 function Header() {
+    const { favMovies } = useFavs();
+    const favsQuantity = favMovies.length;
+
     return (
         <header className="navbar bg-black text-gray-200 flex justify-between">
             <div>
@@ -14,7 +18,7 @@ function Header() {
                         <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-black rounded-box w-52">
                             <li><Link to='/'>Home</Link></li>
                             <li><Link to='/listado'>Listado</Link></li>
-                            <li><Link to='/contacto'>Contacto</Link></li>
+                            <li><Link to='/favoritos'>Favoritos</Link></li>
                         </ul>
                     </div>
                     <Link to='/' className="btn btn-ghost normal-case text-xl">AlkeFlix</Link>
@@ -24,7 +28,10 @@ function Header() {
                     <ul className="menu menu-horizontal p-0">
                         <li><Link to='/'>Home</Link></li>
                         <li><Link to='/listado'>Listado</Link></li>
-                        <li><Link to='/contacto'>Contacto</Link></li>
+                        <li>
+                            <Link to='/favoritos'>Favoritos</Link>     
+                            {favsQuantity > 0 && <span className="indicator-item badge badge-primary pointer-events-none">{favsQuantity}</span> }
+                        </li>
                     </ul>
                 </nav>
             </div>

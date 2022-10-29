@@ -3,6 +3,8 @@ import Swal from "sweetalert2";
 
 function Buscador() {
 
+    const token = sessionStorage.getItem('token');
+    
     const navigate = useNavigate();
 
     const submitHandler = ( e ) => {
@@ -20,10 +22,15 @@ function Buscador() {
     }
 
     return (
-        <form className="mr-10 px-5 bg-white text-black rounded-md" onSubmit={submitHandler}>      
-            <input type="text" name="keyword" placeholder="Buscar..." className="input w-full max-w-xs text-black focus:outline-none px-0" />
-            <button type="submit" className="focus:outline-none"><i className="fa-solid fa-magnifying-glass"></i></button>
-        </form>
+        <>
+            {token && 
+                <form className="mr-10 px-5 bg-white text-black rounded-md" onSubmit={submitHandler}> 
+                    
+                    <input type="text" name="keyword" placeholder="Buscar..." className="input w-full max-w-xs text-black focus:outline-none px-0" />
+                    <button type="submit" className="focus:outline-none"><i className="fa-solid fa-magnifying-glass"></i></button>
+                </form>
+            }
+        </>
     )
 }
 

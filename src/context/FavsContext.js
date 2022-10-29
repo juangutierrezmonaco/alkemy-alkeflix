@@ -28,7 +28,7 @@ const FavsProvider = ({ children }) => {
             
             // Remuevo la película
             setFavMovies(prevState => {
-                const newState = prevState.filter(m => m.id != movie.id);
+                const newState = prevState.filter(m => m.id !== movie.id);
                 localStorage.setItem('favs', JSON.stringify(newState));
                 return newState;
             });

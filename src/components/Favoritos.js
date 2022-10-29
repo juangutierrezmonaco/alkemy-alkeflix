@@ -13,7 +13,7 @@ function Favoritos() {
             {!token && <Navigate replace to="/" />}     
 
             <h1 className="text-4xl mb-5">Sección de Favoritos</h1>
-            {favMovies.length == 0 && <h2 className="text-xl mb-5">Aún no tiene favoritos agregados.</h2>}
+            {favMovies.length === 0 && <h2 className="text-xl mb-5">Aún no tiene favoritos agregados.</h2>}
             <ListaPeliculas movies={favMovies}/>
         </div>
     )

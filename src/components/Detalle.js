@@ -13,7 +13,7 @@ function Detalle() {
 
     useEffect(() => {
         const API_KEY = '892e5b21eccd8afb7c43b48a426ac1e1';
-        const endPoint = `https://api.themoviedb.org/3/movie/${movieID}?api_key=${API_KEY}&language=es-ES`;
+        const endPoint = `https://api.themoviedb.org/3/movie/${movieID}?api_key=${API_KEY}&language=es-ES&append_to_response=release_dates,credits,videos`;
         axios.get(endPoint)
             .then(res => {
                 const apiData = res.data;
@@ -23,7 +23,7 @@ function Detalle() {
                 Swal.fire('Hubo errores. Intenta más tarde.');
                 console.log(err);
             });
-    }, [])
+    }, [movieID])
 
     return (
         <>

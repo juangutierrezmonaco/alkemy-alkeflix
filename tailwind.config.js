@@ -10,8 +10,8 @@ module.exports = {
                 DEFAULT: '0',
                 sm: '0',
                 lg: '0',
-                xl: '9rem',
-                '2xl': '12rem'
+                xl: '7rem',
+                '2xl': '10rem'
             }
         },
     },

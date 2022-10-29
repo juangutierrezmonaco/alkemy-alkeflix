@@ -20,20 +20,21 @@ function PeliculaCard({ title, tagline, poster_path, backdrop_path, overview, ru
 
     useEffect(() => {
         /* Busco la fecha de estreno en Argentina, si no la consigo agarro la que viene por default */
-        const r_date = new Date(release_dates && (release_dates.results.find(rD => rD.iso_3166_1 == 'AR') || release_dates.results[0]).release_dates[0].release_date);
+        const r_date = new Date(release_dates && (release_dates.results.find(rD => rD.iso_3166_1 === 'AR') || release_dates.results[0]).release_dates[0].release_date);
         r_date.setDate(r_date.getDate() + 1);
-        r_date != 'Invalid Date' && setReleaseDate(r_date.toLocaleDateString());
+        !isNaN(r_date.getTime()) && setReleaseDate(r_date.toLocaleDateString());
 
         /* Uso la certificación de Estados Unidos porque para Argetina no hay mucha información (La API no funciona bien con Argentina) */
-        const rate = release_dates && (release_dates.results.find(rD => rD.iso_3166_1 == 'US') || release_dates.results[0]).release_dates[0].certification;
+        const rate = release_dates && (release_dates.results.find(rD => rD.iso_3166_1 === 'US') || release_dates.results[0]).release_dates[0].certification;
         rate && setRate(rate)
 
-        const director = credits && credits.crew.filter(c => c.job == 'Director')[0];
+        const director = credits && credits.crew.filter(c => c.job === 'Director')[0];
         director && director.name && setDirector(director.name);
 
         const nacionality = production_countries && production_countries.length > 0 && production_countries[0].name;
         nacionality && setNacionality(nacionality);
-    }, []);
+
+    }, [credits, production_countries, release_dates]);
 
     return (
         <div >
